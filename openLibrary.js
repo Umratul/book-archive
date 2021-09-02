@@ -5,14 +5,17 @@ const searchBook = () => {
 
     // clear data
     searchField.value = '';
+
     
     if (searchText == '') {
         // console.log('please write something');
-
-        const p = document.createElement('p');
-
-        p.innerText = "Please write something";
         const write = document.getElementById('getErrorMessage');
+        write.innerText = '';
+        const p = document.createElement('p');
+       
+        p.innerText = "Please write something";
+        // const write = document.getElementById('getErrorMessage');
+        // p.innerText = '';
         write.appendChild(p);   
        
     }
@@ -26,8 +29,6 @@ const searchBook = () => {
         .then(res => res.json())
         .then(data => displaySearchResult(data.docs));  
     }
-    
-   
 
 }
 
@@ -39,12 +40,9 @@ const displaySearchResult = docs => {
         // console.log("No result found");
         // console.log(doc);
         const p = document.createElement('p');
-        // p.innerText = '';
         p.innerText = "No result found";
         const p1 = document.getElementById('getErrorMessage');
-        searchResult.appendChild(p);
-        
-           
+        searchResult.appendChild(p);    
     }
 
     docs.forEach(doc => {
@@ -53,7 +51,7 @@ const displaySearchResult = docs => {
         div.classList.add('col');
         div.innerHTML = `
         <div class="card h-100">
-            <img src="https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg" class="card-img-top" style="height: 900px" alt="No image">
+            <img src="https://covers.openlibrary.org/b/id/${doc.cover_i}-M.jpg" class="card-img-top img-thumbnail" style="height: 500px" alt="No image">
             <div class="card-body">
               <h5 class="card-title">Title: ${doc.title}</h5>
               <p class="card-text">Author: ${doc.author_name?.[0]}</p>
@@ -64,15 +62,11 @@ const displaySearchResult = docs => {
         `;
         searchResult.appendChild(div);
     })
+    const result = document.getElementById('totalResult');
+    result.innerText = '';
+    const h3 = document.createElement('h3');
+    h3.innerText = `Result Found: ${docs.length}`;
+    result.appendChild(h3);
+    
 }
-
-const getTotalResult = numFound => {
-    console.log(numFound);
-    const url = `https://openlibrary.org/search.json?q=${numFound}`;
-    fetch(url)
-        .then(res => res.json())
-        .then(data => console.log(data));
-}
-
- 
 
