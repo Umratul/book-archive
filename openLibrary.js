@@ -38,7 +38,7 @@ const displaySearchResult = docs => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
     
-    // const clear = document.getElementById('getErrorMessage2');
+    // const clear = document.getElementById('getErrorMessage');
     // clear.textContent = '';
 
     if (docs.length == 0) {
@@ -46,7 +46,7 @@ const displaySearchResult = docs => {
         // console.log(doc);
         const p = document.createElement('p');
         p.innerText = "No result found";
-        const p1 = document.getElementById('getErrorMessage2');
+        const p1 = document.getElementById('getErrorMessage');
         searchResult.appendChild(p);    
     }
 
