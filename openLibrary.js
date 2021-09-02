@@ -6,6 +6,9 @@ const searchBook = () => {
     // clear data
     searchField.value = '';
 
+    const clearErrorMessage = document.getElementById('getErrorMessage');
+    clearErrorMessage.textContent = '';
+
     
     if (searchText == '') {
         // console.log('please write something');
@@ -16,8 +19,7 @@ const searchBook = () => {
         p.innerText = "Please write something";
         // const write = document.getElementById('getErrorMessage');
         // p.innerText = '';
-        write.appendChild(p);   
-       
+        write.appendChild(p);         
     }
     
     else {
@@ -35,13 +37,16 @@ const searchBook = () => {
 const displaySearchResult = docs => {
     const searchResult = document.getElementById('search-result');
     searchResult.textContent = '';
+    
+    // const clear = document.getElementById('getErrorMessage2');
+    // clear.textContent = '';
 
     if (docs.length == 0) {
         // console.log("No result found");
         // console.log(doc);
         const p = document.createElement('p');
         p.innerText = "No result found";
-        const p1 = document.getElementById('getErrorMessage');
+        const p1 = document.getElementById('getErrorMessage2');
         searchResult.appendChild(p);    
     }
 
